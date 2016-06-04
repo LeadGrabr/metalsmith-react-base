@@ -2,8 +2,8 @@ import React from 'react'
 import Header from '../components/header/index.jsx'
 import Footer from '../components/footer/index.jsx'
 
-var Site = React.createClass({
-  render: function() {
+export default class Site extends React.Component {
+  render() {
     //var styleTags = this.props.styleFiles.map(function(styleFile, index) {
     //  return (
     //    <link href={styleFile} rel="stylesheet" key={index} />
@@ -22,6 +22,4 @@ var Site = React.createClass({
       </div>
     )
   }
-});
-
-module.exports = Site;
+}
