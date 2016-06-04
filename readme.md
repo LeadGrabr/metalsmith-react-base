@@ -1,8 +1,3 @@
-# Metalsmith Static Site Generator with React Templates examples
+# Metalsmith React Base
 
-Made for Micah cause he's cool and asked how I'd been building this. Enjoy!
-
-```bash
-npm install
-npm run build
-```
+This is a base starter for any react templated metalsmith project
