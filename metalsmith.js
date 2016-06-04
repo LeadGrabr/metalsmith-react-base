@@ -5,13 +5,16 @@ var templates = require('metalsmith-react-templates');
 var fileMetadata = require('metalsmith-filemetadata');
 var dateInFile = require('metalsmith-date-in-filename');
 var branch = require('metalsmith-branch');
+var assets = require('metalsmith-assets');
+var watch = require('metalsmith-watch');
+var serve = require('metalsmith-serve');
 
 var metalsmith = Metalsmith(__dirname)
   .source('./content')
   //.use(function(files, metalsmith, done) {
   //  console.log(files);
   //})
-  .clean(false)
+  .clean(true)
   .destination('./public')
   .use(branch('**/*.md')
     .use(markdown())
@@ -37,6 +40,22 @@ var metalsmith = Metalsmith(__dirname)
       directory: './src/templates',
       babel: true
     }))
+  )
+  .use(assets({
+      source: './assets', // relative to the working directory
+      destination: './' // relative to the build directory
+  }))
+  .use(serve({
+        port: 8081
+  }))
+  .use(
+      watch({
+        paths: {
+          "${source}/**/*": true,
+          "${source}/../templates/**/*": true,
+        },
+        livereload: true,
+      })
   )
   .build(function (err, files) {
     if (err) {
